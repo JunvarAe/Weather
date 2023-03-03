@@ -13,8 +13,8 @@ public class Main : MonoBehaviour
     public Text Temperature;
     public Text DateNow;
     public SpriteRenderer WeatherIcon;
+    public Text Sity;
 
-    public List<string> optionSitys = new List<string>() { "Сызрань", "Самара", "Тольятти" };
     public float lat;
     public float lon;
     public Weather weather;
@@ -39,6 +39,7 @@ public class Main : MonoBehaviour
 
     async void GetSity(string sity)
     {
+        Sity.text = sity;
         var client = new HttpClient();
         var request = new HttpRequestMessage
         {
@@ -70,6 +71,13 @@ public class Main : MonoBehaviour
             weather = JsonConvert.DeserializeObject<Weather>(body);
             SetValues();
         }
+    }
+
+
+
+    public void SetSity(string sity)
+    {
+        GetSity(sity);
     }
 }
 
